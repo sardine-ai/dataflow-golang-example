@@ -39,7 +39,7 @@ func queryData(s beam.Scope, project string) beam.PCollection {
 		fmt.Sprintf(`
 			SELECT 
 				my_field
-			FROM somedb.domedata
+			FROM somedb.somedata
 			WHERE DATE(timestamp) >= '%s' 
 			AND DATE(timestamp) <= '%s' 
 		`, *startDate, *endDate),
@@ -60,7 +60,7 @@ func (f *updateDatabaseFn) StartBundle(_ctx context.Context) error {
 	var err error
 	database, err = initializeDatabase(context.Background(), f.Env, f.Project)
 	if err != nil {
-		return errors.Wrap(err, "failed to connect to database")
+		return errors.Wrap(err, "failed to connect the database")
 	}
 	return nil
 }
